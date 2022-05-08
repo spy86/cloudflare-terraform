@@ -1,6 +1,6 @@
 # Add a record to the domain
 resource "cloudflare_record" "main" {
-  for_each = "${data.dns_entry}"
+  for_each = "${var.dns_entry}"
   zone_id = "${data.cloudflare_zone.main.id}"
   name    = each.value["name"]
   value   = each.value["value"]
