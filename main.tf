@@ -1,14 +1,8 @@
-# Configure the Cloudflare provider
 provider "cloudflare" {
-  email = "${var.cloudflare_email}"
-  token = "${var.cloudflare_token}"
+  email   = "${var.cloudflare_email}"
+  api_key = "${var.cloudflare_api_key}"
 }
 
-# Add a record to the domain
-resource "cloudflare_record" "foobar" {
-  domain = "${var.cloudflare_domain}"
-  name   = "terraform"
-  value  = "XXX.XXX.XXX.XXX"
-  type   = "A"
-  ttl    = 3600
+data "cloudflare_zone" "main" {
+  name = "${var.zone_name}"
 }
